@@ -66,8 +66,6 @@ Keep your TaskManagement board data safe and sound with `localStorage`. Your wor
 
    Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Contributions 🤝
+## Live Demo
 
-Ready to spice things up? We'd love your touch. Fork, branch, and pull request away!
-
-Happy task juggling! 🚀🎉
+Please [click here](https://task-master-bc36a.web.app/) to see live demo. 🚀🎉
