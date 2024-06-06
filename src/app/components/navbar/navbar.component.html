@@ -33,7 +33,7 @@
     </h1>
 
     <div class="flex gap-2.4 sm:pt-1.6 lg:pt-8">
-      <div class=" sm:pl-5 lg:pl-2.4" [ngClass]="{ hidden: !opened }">
+      <div class=" sm:pl-5 lg:pl-2.4">
         <app-theme-toggler
           (enableDarkMode)="enableDarkMode.emit($event)"
         ></app-theme-toggler>
