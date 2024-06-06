@@ -52,13 +52,13 @@ Keep your TaskManagement board data safe and sound with `localStorage`. Your wor
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/jigneshMultiqos/TaskMaster.git
+   git clone https://github.com/jigneshMultiqos/task-master.git
    ```
 
 2. **Install Dependencies:**
 
    ```bash
-   cd ng-taskManagement
+   cd task-master
    npm install
    ```
 
