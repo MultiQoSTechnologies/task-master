@@ -1,0 +1,69 @@
+<aside
+  [ngClass]="{ 'w-0': !opened, 'lg:w-[30rem]': opened, 'sm:w-[26rem]': opened }"
+  class="full fixed z-10 hidden h-screen flex-col border-r border-lines-light bg-white py-2.4 duration-700 overflow-hidden dark:border-lines-dark dark:bg-grey-dark sm:flex"
+>
+  <figure
+    class="mb-5 sm:pl-2.4 lg:pl-3.2"
+    [ngClass]="{ hidden: !opened }"
+  >
+    <img
+      src="assets/images/logo-dark.svg"
+      alt="logo" width="130px"
+      class=" dark:hidden"
+    />
+    <img
+      src="assets/images/logo.svg"
+      alt="logo" width="130px"
+      class="hidden  dark:block"
+    />
+  </figure>
+  <div
+    class="mb-auto flex flex-col sm:w-96 lg:w-[27.6rem]"
+    [ngClass]="{ hidden: !opened }"
+  >
+    <div class="flex items-center justify-between	mb-8">
+    <h2
+      class=" text-sm font-bold uppercase leading-sm tracking-sm text-grey-medium sm:pl-2.4 lg:pl-3.2"
+    >
+      All Projects
+    </h2>
+      <button
+        (click)="addBoard()"
+        class=" flex items-center text-sm font-bold uppercase leading-sm text-purple hover:text-grey-medium"
+      >
+        <span style="font-size: 16px;    position: relative;    top: -3px;    margin-left: 3px;">+</span> Add Project
+      </button>
+
+    </div>
+    <ng-container *ngFor="let board of boards; let i = index">
+      <button
+        *ngIf="board.name === activeBoard?.name"
+        class="flex h-4.8 items-center rounded-r-full bg-purple text-white sm:pl-2.4 lg:pl-3.2 mb-1.2"
+      >
+        <img
+          src="assets/images/icon-board-active.svg"
+          alt="board"
+          class="mr-3 h-8 w-8 lg:mr-4"
+        />
+        <span class="text-md font-bold leading-md">{{ board.name }}</span>
+      </button>
+      <button
+        *ngIf="!(board.name === activeBoard?.name)"
+        (click)="selectBoard(i)"
+        class="marker mb-1.2 flex h-4.8 items-center rounded-r-full text-grey-medium hover:bg-purple-low hover:text-purple dark:hover:bg-white sm:pl-2.4 lg:pl-3.2"
+      >
+        <img
+          src="assets/images/icon-board.svg"
+          alt="board"
+          class="idle mr-3 h-8 w-8 lg:mr-4"
+        />
+        <img
+          src="assets/images/icon-board-new.svg"
+          alt="board"
+          class="cover mr-3 h-8 w-8 lg:mr-4"
+        />
+        <span class="text-md font-bold leading-md">{{ board.name }}</span>
+      </button>
+    </ng-container>
+  </div>
+</aside>

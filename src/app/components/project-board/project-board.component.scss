@@ -1,0 +1,24 @@
+.board-container {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+
+  .drag-handle {
+    position: absolute;
+    background-color: transparent;
+    cursor: move;
+    right: 0;
+    padding: 5px;
+    top: 5px;
+  }
+}
+
+.card-wrapper{
+  /*background-color: #f1f2f4;*/
+  padding: 10px;
+  box-shadow: 1px 1px 7px 2px rgb(0 0 0 / 14%);
+  border-radius: 10px;
+}

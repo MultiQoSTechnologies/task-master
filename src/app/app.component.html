@@ -1,0 +1,43 @@
+<div
+  [ngClass]="{ dark: darkMode }"
+  class="root-container relative flex overflow-hidden"
+>
+  <app-sidebar
+    [boards]="boards()"
+    [activeBoard]="activeBoard()"
+    [opened]="isSidebarOpen"
+    (selected)="selectBoard($event)"
+    (closeSidebar)="closeSidebar()"
+    (add)="addBoard()"
+  ></app-sidebar>
+  <main
+    class="main flex-1 duration-700"
+    [ngClass]="{ 'sm:ml-[26rem] lg:ml-[30rem]': isSidebarOpen }"
+  >
+    <app-navbar
+      [opened]="isSidebarOpen"
+      [activeBoard]="activeBoard()"
+      [boards]="boards()"
+      [darkMode]="darkMode"
+      (boardSelect)="selectBoard($event)"
+      (boardAdd)="addBoard()"
+      (boardEdit)="editBoard()"
+      (boardDelete)="deleteBoard()"
+      (closeSidebar)="closeSidebar()"
+      (openSidebar)="openSideBar()"
+      (enableDarkMode)="toggleDarkMode($event)"
+    ></app-navbar>
+
+    <app-project-board
+      [darkMode]="darkMode"
+      [activeBoard]="activeBoard()"
+      (columnAdd)="editBoard()"
+      (boardEdit)="updateBoardAfterTaskReorder($event)"
+      (taskUpdate)="updateTask($event)"
+      (taskDeleteModal)="deleteTask($event)"
+      (taskUpdateModal)="editTask($event)"
+    ></app-project-board>
+  </main>
+</div>
+
+

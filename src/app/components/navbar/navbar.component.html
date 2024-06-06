@@ -1,0 +1,200 @@
+<nav
+  class="fixed z-50 hidden w-[-webkit-fill-available] border-b border-lines-light bg-white dark:border-lines-dark dark:bg-grey-dark sm:flex sm:h-[8rem] lg:h-[9.7rem]"
+>
+  <figure
+    class="flex w-[21rem] items-center border-r border-lines-light px-2.4 dark:border-lines-dark"
+    [ngClass]="{ hidden: opened }"
+  >
+    <img
+      src="assets/images/logo-dark.svg"
+      alt="logo" width="130px"
+      class=" dark:hidden"
+    />
+    <img
+      src="assets/images/logo.svg"
+      alt="logo" width="130px"
+      class="hidden  dark:block"
+    />
+  </figure>
+
+  <header class="flex flex-1 items-start sm:px-2.4 lg:px-3.2">
+    <h1
+      class=" flex flex-1 font-bold text-black dark:text-white sm:pt-[2.8rem] sm:text-lx sm:leading-lx lg:pt-[2.9rem] lg:text-xl lg:leading-xl"
+    >
+
+      <svg class="fill-current mt-0.5" (click)="opened?collapseSidebar(): expandSidebar()"
+           style="width: 30px;height: 30px;margin-right: 5px;cursor: pointer" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 72 72" width="128px" height="128px">
+        <path
+          d="M56 48c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 48 54.798 48 56 48zM56 32c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 32 54.798 32 56 32zM56 16c2.209 0 4 1.791 4 4 0 2.209-1.791 4-4 4-1.202 0-38.798 0-40 0-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4C17.202 16 54.798 16 56 16z"/>
+      </svg>
+
+      {{ activeBoard?.name }}
+    </h1>
+
+    <div class="flex gap-2.4 sm:pt-1.6 lg:pt-8">
+      <div class=" sm:pl-5 lg:pl-2.4" [ngClass]="{ hidden: !opened }">
+        <app-theme-toggler
+          (enableDarkMode)="enableDarkMode.emit($event)"
+        ></app-theme-toggler>
+      </div>
+      <button
+        [disabled]="!activeBoard?.name"
+        [matMenuTriggerFor]="menu"
+        class="self-center px-3"
+      >
+        <img
+          src="assets/images/icon-vertical-ellipsis.svg"
+          alt="options"
+          class="h-8 w-2"
+        />
+      </button>
+    </div>
+  </header>
+</nav>
+
+<nav
+  class="fixed flex h-[6.4rem] w-[-webkit-fill-available] items-center border-b border-lines-light bg-white px-1.6 dark:border-lines-dark dark:bg-grey-dark sm:hidden"
+>
+  <figure class="mr-1.6 h-10 w-[3.2rem]">
+    <img src="assets/images/light.png" alt="logo"/>
+  </figure>
+  <h1
+    class="board-name mr-0.8 text-lg font-bold leading-lg text-black dark:text-white"
+  >
+    {{ activeBoard?.name }}
+  </h1>
+  <button
+    type="button"
+    [matMenuTriggerFor]="sidebar"
+    class="mr-auto pt-2"
+    (menuClosed)="close()"
+    (menuOpened)="open()"
+  >
+    <img
+      src="assets/images/icon-chevron-down.svg"
+      alt="arrow-down"
+      *ngIf="!sidebarShown"
+    />
+    <img
+      src="assets/images/icon-chevron-up.svg"
+      alt="arrow-up"
+      *ngIf="sidebarShown"
+    />
+  </button>
+  <button class="px-3" [disabled]="!activeBoard?.name" [matMenuTriggerFor]="menu">
+    <img
+      src="assets/images/icon-vertical-ellipsis.svg"
+      alt="options"
+      class="h-1.6 w-[0.369rem]"
+    />
+  </button>
+</nav>
+
+<mat-menu #menu="matMenu" class="board-options" [backdropClass]="'menu'">
+  <div
+    [ngClass]="{ 'bg-grey-vdark': darkMode, 'bg-white': !darkMode }"
+    class="flex w-[19.2rem] flex-col gap-1.6 rounded-xl p-1.6"
+  >
+    <button
+      (click)="editBoard()"
+      class="text-left text-l font-medium leading-ms text-grey-vdark"
+    >
+      Edit Board
+    </button>
+    <button
+      (click)="deleteBoard()"
+      class="text-left text-l font-medium leading-ms text-red"
+    >
+      Delete Board
+    </button>
+  </div>
+</mat-menu>
+
+<mat-menu #sidebar="matMenu" [backdropClass]="'mobile-menu'">
+  <div
+    [ngClass]="{ 'bg-grey-dark': darkMode, 'bg-white': !darkMode }"
+    class="flex w-[26.4rem] flex-col gap-1.6 rounded-xl py-1.6"
+  >
+    <div class="flex w-96 flex-col">
+      <h2
+        class="mb-8 pl-2.4 text-sm font-bold uppercase leading-sm tracking-sm text-grey-vdark"
+      >
+        All Projects ({{ boards.length }})
+      </h2>
+      <button
+        (click)="addBoard()"
+        class="flex h-4.8 items-center rounded-r-full pl-2.4 hover:bg-purple-low dark:hover:bg-white"
+      >
+        <img
+          src="assets/images/icon-board-new.svg"
+          alt="board"
+          class="mr-1.2 h-1.6 w-1.6"
+        />
+        <span class="text-md font-bold leading-md text-purple"
+        >+ Create New Project</span
+        >
+      </button>
+      <ng-container *ngFor="let board of boards; let i = index">
+        <button
+          *ngIf="board.name === activeBoard?.name"
+          class="flex h-4.8 items-center rounded-r-full bg-purple pl-2.4 text-white"
+        >
+          <img
+            src="assets/images/icon-board-active.svg"
+            alt="board"
+            class="mr-1.2 h-1.6 w-1.6"
+          />
+          <span class="text-md font-bold leading-md">{{ board.name }}</span>
+        </button>
+        <button
+          *ngIf="!(board.name === activeBoard?.name)"
+          (click)="selectBoard(i)"
+          class="marker flex h-4.8 items-center rounded-r-full pl-2.4 text-grey-vdark hover:bg-purple-low hover:text-purple dark:hover:bg-white"
+        >
+          <img
+            src="assets/images/icon-board.svg"
+            alt="board"
+            class="idle mr-1.2 h-1.6 w-1.6"
+          />
+          <img
+            src="assets/images/icon-board-new.svg"
+            alt="board"
+            class="cover mr-1.2 h-1.6 w-1.6"
+          />
+          <span class="text-md font-bold leading-md">{{ board.name }}</span>
+        </button>
+      </ng-container>
+
+    </div>
+    <div>
+      <div
+        class="flex h-4.8 items-center justify-center rounded-lg"
+      >
+        <img
+          src="assets/images/icon-light-theme.svg"
+          class="h-6 w-6"
+          alt="light" we
+        />
+        <div
+          role="button"
+          aria-disabled="true"
+          (click)="stopPropagation($event)"
+          (keyup)="stopPropagation($event)"
+          class="toggle mx-[2.367rem] flex"
+        >
+          <label
+            for="switch"
+            [ngClass]="{ move: darkMode }"
+            class="relative h-8 w-16 cursor-pointer rounded-2xl bg-purple p-1 hover:bg-purple-light"
+          ></label>
+        </div>
+        <img
+          src="assets/images/icon-dark-theme.svg"
+          class="h-6 w-6"
+          alt="dark"
+        />
+      </div>
+    </div>
+  </div>
+</mat-menu>
