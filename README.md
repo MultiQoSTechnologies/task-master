@@ -69,3 +69,8 @@ Keep your TaskManagement board data safe and sound with `localStorage`. Your wor
 ## Live Demo
 
 Please [click here](https://task-master-bc36a.web.app/) to see live demo. 🚀🎉
+
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request with your improvements.
