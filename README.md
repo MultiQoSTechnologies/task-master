@@ -52,7 +52,7 @@ Keep your TaskManagement board data safe and sound with `localStorage`. Your wor
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/jigneshMultiqos/task-master.git
+   git clone https://github.com/MultiQoSTechnologies/task-master.git
    ```
 
 2. **Install Dependencies:**
