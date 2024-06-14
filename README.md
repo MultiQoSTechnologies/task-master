@@ -64,7 +64,11 @@ Keep your TaskManagement board data safe and sound with `localStorage`. Your wor
 
 3. **Run the App:**
 
-   Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+    ```bash
+   ng serve -o
+   ```
+
+   Will navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
 ## Live Demo
 
