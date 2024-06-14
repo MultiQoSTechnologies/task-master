@@ -74,3 +74,10 @@ Please [click here](https://task-master-bc36a.web.app/) to see live demo. ðŸš€ðŸ
 ## Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request with your improvements.
+
+### Let Us know
+For more details, visit MultiQoS.
+
+Contact us for collaboration or support:
+
+Email: biz@multiqos.com
