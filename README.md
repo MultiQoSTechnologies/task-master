@@ -76,7 +76,7 @@ Please [click here](https://task-master-bc36a.web.app/) to see live demo. ðŸš€ðŸ
 Contributions are welcome! Please fork the repository and create a pull request with your improvements.
 
 ### Let Us know
-For more details, visit <a href="https://multiqos.com/" target="_blank" rel="noopener noreferrer">MultiQoS</a>.
+For more details, visit [MultiQoS](https://multiqos.com/)>MultiQoS</a>.
 
 Contact us for collaboration or support:
 
